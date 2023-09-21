@@ -1,0 +1,56 @@
+<div class="card">
+    <div class="card-content">
+      <div class="media">
+        <div class="media-left">
+          <figure class="image is-96x96">
+            <img src="{{.MainSprite.Front}}" alt="Imagem Original" id="imagem{{.ID}}" hx-swap="outerHTML">
+            <script>
+                // Função para trocar a imagem no hover
+                function trocarImagem() {
+                    var imagem = document.getElementById("imagem{{.ID}}");
+                    if (imagem.src.endsWith("{{.MainSprite.Front}}")) {
+                        imagem.src = "{{.MainSprite.Back}}";
+                    } else {
+                        imagem.src = "{{.MainSprite.Front}}";
+                    }
+                }
+        
+                // Adicione um ouvinte de evento para chamar a função no hover
+                var img = document.getElementById("imagem{{.ID}}");
+                img.addEventListener("click", trocarImagem);
+            </script>
+          </figure>
+        </div>
+        <div class="media-content">
+
+         
+          
+          <div class="columns">
+            <div class="column">
+                <p class="title is-12">{{.Name}}</p>
+                <div class="columns is-mobile">
+                  {{range.Types}}
+                    <div class="column">
+                        <button class="button  {{.Type.Color}} is-medium is-responsive">{{.Type.Name}}</button>
+                    </div>
+                  {{end}}
+                </div>
+              </div>
+            
+                <div class="column">
+                    
+                </div>
+            
+        </div>
+        </div>
+      </div>
+  
+      <div class="content">
+        <ul>
+            {{range.Stats}}
+                <li>{{.Stat.Name}} <progress class="progress is-info" value="{{.BaseStat}}" max="100">{{.BaseStat}}%</progress></li>
+            {{end}}
+        </ul>
+      </div>
+    </div>
+  </div>

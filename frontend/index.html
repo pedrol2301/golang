@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/htmx.org@1.7.0/dist/htmx.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+</head>
+
+<body>
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+          <a class="navbar-item" href="/">
+            <img src="img/R.png">&nbsp;
+            My Pokedex
+          </a>
+        </div>
+      
+        <div id="navbarBasicExample" class="navbar-menu">
+          <!-- <div class="navbar-start">
+            <a class="navbar-item">
+              Locations
+            </a>
+          </div> -->
+        </div>
+      </nav>
+    <div class="container">
+        <div class="columns">
+          <div class="column is-one-fifth">
+            <!-- Comentado, trazer menu aside com os tipos de pokemon para filtrar -->
+            <!-- <aside class="menu">
+              <p class="menu-label">
+                Pokemon Types
+              </p>
+              <ul class="menu-list">
+                <li><a>Dashboard</a></li>
+                <li><a>Customers</a></li>
+              </ul>
+            </aside> -->
+          </div>
+          <div class="column ml-3">
+            {{ range.Results }}
+                <div class="card mb-3">
+                    <header class="card-header">
+                    <p class="card-header-title">
+                        {{.Name}}
+                    </p>
+                    </header>
+                    <div class="card-content">
+                        <div class="content">
+                            <div class="column">
+                                <button data-hx-get="/pokemon/{{.ID}}" hx-trigger="click" hx-target="#dados{{.ID}}" hx-swap="innerHTML">Se atributtes</button>
+                            </div>
+                            <div id="dados{{.ID}}" ></div>
+                        </div>
+                    </div>
+                </div>
+            {{ end }}
+          </div>
+        </div>
+    </div>
+</body>
+</html>
